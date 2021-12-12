@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:traveller/widgets/app_large_text.dart';
+import 'package:traveller/widgets/app_text.dart';
 
 class WelcomePage extends StatefulWidget {
   const WelcomePage({Key? key}) : super(key: key);
@@ -9,9 +11,9 @@ class WelcomePage extends StatefulWidget {
 
 class _WelcomePageState extends State<WelcomePage> {
   List images = [
-    "welcome-one.png"
-        "welcome-two.png"
-        "welcome-three.png"
+    "welcome-one.png",
+    "welcome-two.png",
+    "welcome-three.png",
   ];
   @override
   Widget build(BuildContext context) {
@@ -27,6 +29,34 @@ class _WelcomePageState extends State<WelcomePage> {
                 image: DecorationImage(
                   image: AssetImage("images/" + images[index]),
                   fit: BoxFit.cover,
+                ),
+              ),
+              child: Container(
+                margin: const EdgeInsets.only(top: 150, left: 20, right: 20),
+                child: Row(
+                  children: [
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        AppLargeText(text: "Trips"),
+                        AppText(
+                          text: "To The Mountains", size: 30,
+                          //color: Colors.red,
+                        ),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        Container(
+                          width: 250,
+                          child: AppText(
+                            text:
+                                "Mountain hikes give you an increadible sence of freedom along with endurance test.",
+                            color: Colors.black87,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
                 ),
               ),
             );
