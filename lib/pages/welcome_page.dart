@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:traveller/widgets/app_large_text.dart';
 import 'package:traveller/widgets/app_text.dart';
+import 'package:traveller/widgets/responsive_button.dart';
 
 class WelcomePage extends StatefulWidget {
   const WelcomePage({Key? key}) : super(key: key);
@@ -15,6 +16,7 @@ class _WelcomePageState extends State<WelcomePage> {
     "welcome-two.png",
     "welcome-three.png",
   ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -34,6 +36,7 @@ class _WelcomePageState extends State<WelcomePage> {
               child: Container(
                 margin: const EdgeInsets.only(top: 150, left: 20, right: 20),
                 child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -54,8 +57,28 @@ class _WelcomePageState extends State<WelcomePage> {
                             color: Colors.black87,
                           ),
                         ),
+                        SizedBox(
+                          height: 40,
+                        ),
+                        ResponsiveButton(
+                          width: 120,
+                        ),
                       ],
                     ),
+                    Column(
+                      children: List.generate(3, (indexDots) {
+                        return Container(
+                          margin: const EdgeInsets.only(bottom: 2),
+                          width: 8,
+                          height: index == indexDots ? 25 : 8,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(8),
+                              color: index == indexDots
+                                  ? Colors.lightBlue
+                                  : Colors.lightBlue.withOpacity(0.3)),
+                        );
+                      }),
+                    )
                   ],
                 ),
               ),
