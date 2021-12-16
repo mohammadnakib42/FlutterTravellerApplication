@@ -97,7 +97,7 @@ class _HoemPageState extends State<HoemPage> with TickerProviderStateMixin {
                     height: 300,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(20),
-                      color: Colors.white,
+                      color: Colors.blue,
                       image: DecorationImage(
                         image: AssetImage(
                           "images/levender.jpg",
