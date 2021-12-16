@@ -11,6 +11,12 @@ class HoemPage extends StatefulWidget {
 }
 
 class _HoemPageState extends State<HoemPage> with TickerProviderStateMixin {
+  var images = {
+    "levender.jpg": "Levender",
+    "leaves.jpg": "Leaves",
+    "pond.jpg": "Ponds",
+    "stars.jpg": "Stars",
+  };
   @override
   Widget build(BuildContext context) {
     TabController _tabController = TabController(length: 3, vsync: this);
@@ -112,12 +118,77 @@ class _HoemPageState extends State<HoemPage> with TickerProviderStateMixin {
               Text("Bye"),
             ]),
           ),
+          SizedBox(
+            height: 30,
+          ),
+
+          Container(
+            margin: const EdgeInsets.only(left: 20, right: 20),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                AppLargeText(text: "Explore More", size: 22),
+                AppText(
+                  text: "See All",
+                  color: Colors.brown,
+                ),
+              ],
+            ),
+          ),
+          SizedBox(
+            height: 10,
+          ),
+          Container(
+            height: 120,
+            width: double.maxFinite,
+            margin: const EdgeInsets.only(left: 20),
+            child: ListView.builder(
+              itemCount: 4,
+              scrollDirection: Axis.horizontal,
+              itemBuilder: (_, index) {
+                return Container(
+                  margin: const EdgeInsets.only(right: 30),
+                  child: Column(
+                    children: [
+                      Container(
+                        // margin: const EdgeInsets.only(
+                        //   right: 50,
+                        // ),
+                        width: 80,
+                        height: 80,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(20),
+                          color: Colors.blue,
+                          image: DecorationImage(
+                            image: AssetImage(
+                              "images/" + images.keys.elementAt(index),
+                            ),
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      Container(
+                        child: AppText(
+                          text: images.values.elementAt(index),
+                          color: Colors.blueGrey,
+                        ),
+                      ),
+                    ],
+                  ),
+                );
+              },
+            ),
+          ),
         ],
       ),
     );
   }
 }
 
+//Circle Lable Creator
 class CircleTabIndicator extends Decoration {
   final Color color;
   double radius;

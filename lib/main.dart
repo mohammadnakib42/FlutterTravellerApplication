@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:traveller/pages/detail_page.dart';
 import 'package:traveller/pages/navpages/main_page.dart';
 import 'package:traveller/pages/welcome_page.dart';
 
@@ -22,7 +23,7 @@ class _MyAppState extends State<MyApp> {
       theme: ThemeData(
         primarySwatch: Colors.blueGrey,
       ),
-      home: MainPage(),
+      home: DetailPage(),
     );
   }
 }
