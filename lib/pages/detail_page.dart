@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:traveller/widgets/app_button.dart';
 import 'package:traveller/widgets/app_large_text.dart';
 import 'package:traveller/widgets/app_text.dart';
 
@@ -11,6 +12,7 @@ class DetailPage extends StatefulWidget {
 }
 
 class _DetailPageState extends State<DetailPage> {
+  int gottenStars = 4;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -66,6 +68,7 @@ class _DetailPageState extends State<DetailPage> {
                   ),
                 ),
                 child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -101,11 +104,64 @@ class _DetailPageState extends State<DetailPage> {
                     SizedBox(
                       height: 20,
                     ),
+                    Row(
+                      children: [
+                        Wrap(
+                          children: List.generate(
+                            5,
+                            (index) {
+                              return Icon(
+                                Icons.stars,
+                                color: index < gottenStars
+                                    ? Colors.amber
+                                    : Colors.black54,
+                              );
+                            },
+                          ),
+                        ),
+                        SizedBox(
+                          width: 10,
+                        ),
+                        AppText(
+                          text: "(4.0)",
+                          color: Colors.green,
+                        ),
+                      ],
+                    ),
+                    SizedBox(
+                      height: 25,
+                    ),
+                    AppLargeText(
+                      text: "People",
+                      color: Colors.black.withOpacity(0.8),
+                      size: 20,
+                    ),
+                    SizedBox(
+                      height: 5,
+                    ),
+                    AppText(
+                      text: "Number of people in your group",
+                      color: Colors.blueGrey,
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
                     Wrap(
                       children: List.generate(
                         5,
                         (index) {
-                          return Icon(Icons.stars);
+                          return Container(
+                            margin: const EdgeInsets.only(right: 10),
+                            child: AppButtons(
+                              size: 50,
+                              color: Colors.black,
+                              backgroundColor: Colors.blue,
+                              borderColor: Colors.grey,
+                              text: (index + 1).toString(),
+                              //icon: Icons.favorite_border,
+                              //isIcon: true,
+                            ),
+                          );
                         },
                       ),
                     ),
