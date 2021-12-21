@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:traveller/widgets/app_button.dart';
 import 'package:traveller/widgets/app_large_text.dart';
 import 'package:traveller/widgets/app_text.dart';
+import 'package:traveller/widgets/responsive_button.dart';
 
 class DetailPage extends StatefulWidget {
   const DetailPage({Key? key}) : super(key: key);
@@ -13,6 +14,7 @@ class DetailPage extends StatefulWidget {
 
 class _DetailPageState extends State<DetailPage> {
   int gottenStars = 4;
+  int selectedIndex = -1;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -150,23 +152,74 @@ class _DetailPageState extends State<DetailPage> {
                       children: List.generate(
                         5,
                         (index) {
-                          return Container(
-                            margin: const EdgeInsets.only(right: 10),
-                            child: AppButtons(
-                              size: 50,
-                              color: Colors.black,
-                              backgroundColor: Colors.blue,
-                              borderColor: Colors.grey,
-                              text: (index + 1).toString(),
-                              //icon: Icons.favorite_border,
-                              //isIcon: true,
+                          return InkWell(
+                            onTap: () {
+                              setState(() {
+                                selectedIndex = index;
+                              });
+                            },
+                            child: Container(
+                              margin: const EdgeInsets.only(right: 10),
+                              child: AppButtons(
+                                size: 50,
+                                color: selectedIndex == index
+                                    ? Colors.white
+                                    : Colors.black,
+                                backgroundColor: selectedIndex == index
+                                    ? Colors.black
+                                    : Colors.blue,
+                                borderColor: selectedIndex == index
+                                    ? Colors.black
+                                    : Colors.grey,
+                                text: (index + 1).toString(),
+                                //icon: Icons.favorite_border,
+                                //isIcon: true,
+                              ),
                             ),
                           );
                         },
                       ),
                     ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    AppLargeText(
+                      text: "Description",
+                      color: Colors.black.withOpacity(0.5),
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    AppText(
+                      text:
+                          "You must go for travel. Travelling helps get rid of pressure. Go to the mountains to see the nature.",
+                      color: Colors.blueGrey,
+                    ),
                   ],
                 ),
+              ),
+            ),
+            Positioned(
+              bottom: 20,
+              left: 20,
+              right: 20,
+              child: Row(
+                children: [
+                  AppButtons(
+                    size: 60,
+                    color: Colors.black,
+                    backgroundColor: Colors.white,
+                    borderColor: Colors.black,
+                    isIcon: true,
+                    icon: Icons.favorite_border,
+                  ),
+                  SizedBox(
+                    width: 20,
+                  ),
+                  ResponsiveButton(
+                    isResponsive: true,
+                  ),
+                ],
               ),
             ),
           ],
