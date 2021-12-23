@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:traveller/cubit/app_cubits.dart';
+import 'package:traveller/cubit/app_cubits_logics.dart';
 import 'package:traveller/pages/detail_page.dart';
 import 'package:traveller/pages/navpages/main_page.dart';
 import 'package:traveller/pages/welcome_page.dart';
+import 'package:traveller/services/data_services.dart';
 
 void main() {
   runApp(const MyApp());
@@ -23,7 +27,12 @@ class _MyAppState extends State<MyApp> {
       theme: ThemeData(
         primarySwatch: Colors.blueGrey,
       ),
-      home: DetailPage(),
+      home: BlocProvider<AppCubits>(
+        create: (contex) => AppCubits(
+          data: DataServices(),
+        ),
+        child: AppCubitLogics(),
+      ),
     );
   }
 }
